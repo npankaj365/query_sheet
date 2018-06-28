@@ -1,5 +1,5 @@
 import cx_Oracle
-
+from openpyxl import Workbook, load_workbook
 connection = cx_Oracle.connect("PANKAJ", "PANKAJ", "192.168.50.103:1521/RMS14")
 queries = ["""select 1 a, 2 b, 3 c
 		from dual
