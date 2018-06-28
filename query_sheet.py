@@ -11,13 +11,20 @@ queries = ["""select 1 a, 2 b, 3 c
 		union
 		select 21 first, 22 second, 23 third from dual"""]
 cur = connection.cursor()
+wb = Workbook()
+ws = wb.active
+#template_workbook = load_workbook(filename='test.xlsx')
+r = 1
+c = 1
 for query in queries:
 	cur.execute(query)
 	result = cur.fetchall()
 	for record in result:
 		for item in record:
-			print(item, end="")
+			#print(item, end="")
+				
 		print("\r")
+wb.save('test.xlsx')
 connection.close()
 
 
