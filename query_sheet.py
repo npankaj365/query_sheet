@@ -21,8 +21,12 @@ for query in queries:
 	result = cur.fetchall()
 	for record in result:
 		for item in record:
+			curr_cell = ws.cell(r, c)
 			#print(item, end="")
-				
+			curr_cell.value = item
+			c += 1
+		r += 1	
+		c = 1
 		print("\r")
 wb.save('test.xlsx')
 connection.close()
