@@ -13,13 +13,21 @@ queries = ["""select 1 a, 2 b, 3 c
 cur = connection.cursor()
 wb = Workbook()
 ws = wb.active
-#template_workbook = load_workbook(filename='test.xlsx')
 r = 1
-c = 1
 for query in queries:
 	cur.execute(query)
 	result = cur.fetchall()
+	col_names = [row[0] for row in cur.description]
+
+	print(col_names)
+	c = 1
+	for field_name in col_names:
+		curr_cell = ws.cell(r, c)
+		curr_cell.value = field_name
+		c += 1
+	r += 1
 	for record in result:
+		c = 1
 		for item in record:
 			curr_cell = ws.cell(r, c)
 			#print(item, end="")
